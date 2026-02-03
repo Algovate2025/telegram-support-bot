@@ -29,20 +29,9 @@ from telegram.error import TelegramError, NetworkError, TimedOut, BadRequest
 # KONFIGURATION
 # ============================================================
 
-BOT_TOKEN = os.environ.get("BOT_TOKEN")
-if not BOT_TOKEN:
-    print("❌ FEHLER: BOT_TOKEN nicht gesetzt!")
-    print("Setze: export BOT_TOKEN='dein_token'")
-    sys.exit(1)
-
-SUPPORT_GROUP_ID = int(os.environ.get("SUPPORT_GROUP_ID", "0"))
-if not SUPPORT_GROUP_ID:
-    print("❌ FEHLER: SUPPORT_GROUP_ID nicht gesetzt!")
-    sys.exit(1)
-
-ADMIN_IDS = [int(x.strip()) for x in os.environ.get("ADMIN_IDS", "").split(",") if x.strip()]
-if not ADMIN_IDS:
-    print("⚠️ WARNUNG: Keine ADMIN_IDS gesetzt")
+BOT_TOKEN = os.environ.get("BOT_TOKEN", "8443190094:AAEzVvqKbavZKHmEjsGu2WObrfB43qNfas0")
+SUPPORT_GROUP_ID = int(os.environ.get("SUPPORT_GROUP_ID", "-1003870321136"))
+ADMIN_IDS = [int(x.strip()) for x in os.environ.get("ADMIN_IDS", "2089427192,6696982829").split(",") if x.strip()]
 
 # Timing
 FOLLOWUP_HOURS_NORMAL = 24
@@ -1838,9 +1827,7 @@ def main():
     
     app.run_polling(
         allowed_updates=Update.ALL_TYPES,
-        drop_pending_updates=False,
-        connect_timeout=30,
-        read_timeout=30
+        drop_pending_updates=False
     )
 
 if __name__ == "__main__":
